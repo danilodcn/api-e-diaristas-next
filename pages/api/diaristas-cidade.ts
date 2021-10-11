@@ -1,3 +1,4 @@
+import NextCors from "nextjs-cors";
 import { UserShortInterface } from "../../types/UserInterface";
 
 import axios from "axios";
@@ -25,8 +26,13 @@ function getRandom(a = 0, b = 1): number {
 
 const CEPS = ["65930000", "00000000"];
 
-function diaristasCidade(req: any, res: any) {
+async function diaristasCidade(req: any, res: any) {
   //   var diaristas = await getRandom.users(3);
+  await NextCors(req, res, {
+    methods: ["GET1", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200,
+  });
   var { cep } = req.query;
 
   var cep_existe = false;
